@@ -193,12 +193,8 @@ public partial class ParticleForm : Form
         _animationTimer?.Dispose();
         _connectionPen?.Dispose();
         _particleBrush?.Dispose();
+
         base.OnFormClosed(e);
-    }
-
-    private void InitializeComponent()
-    {
-
     }
 
     private static Color GenerateRandomColor()
