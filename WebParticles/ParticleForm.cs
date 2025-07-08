@@ -2,12 +2,11 @@ namespace WebParticles;
 
 public partial class ParticleForm : Form
 {
-    private List<Particle> _particles = new();
-    private System.Windows.Forms.Timer _animationTimer = new();
-    private Point _mousePosition = default;
-
-    private readonly Pen _connectionPen = new(Color.Cyan);
+    private readonly List<Particle> _particles = new();
+    private readonly System.Windows.Forms.Timer _animationTimer = new();
+    private readonly Pen _connectionPen = new(Color.Cyan, width: 2f);
     private readonly SolidBrush _particleBrush = new(Color.White);
+    private Point _mousePosition = default;
 
     private const int MaxParticles = 25;
     private const float ConnectionDistance = 170f;
@@ -19,12 +18,14 @@ public partial class ParticleForm : Form
 
     public ParticleForm()
     {
-        InitializeComponent();
+        AutoScaleDimensions = new SizeF(7F, 15F);
+        AutoScaleMode = AutoScaleMode.Font;
+        ClientSize = new(800, 600);
         StartPosition = FormStartPosition.CenterScreen;
-        DoubleBuffered = true;
         BackColor = Color.Black;
-        SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint, true);
+        DoubleBuffered = true;
 
+        SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint, true);
         InitializeParticleSystem();
     }
 
@@ -193,6 +194,11 @@ public partial class ParticleForm : Form
         _connectionPen?.Dispose();
         _particleBrush?.Dispose();
         base.OnFormClosed(e);
+    }
+
+    private void InitializeComponent()
+    {
+
     }
 
     private static Color GenerateRandomColor()
